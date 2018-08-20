@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{E766B05C-BF84-46F5-AC73-2A079C81E3C8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>Polynano.Startup</RootNamespace>
+    <AssemblyName>Polynano.Startup</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>8.0</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OpenTK, Version=3.0.1.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OpenTK.3.0.1\lib\net20\OpenTK.dll</HintPath>
+    </Reference>
+    <Reference Include="OpenTK.GLControl, Version=3.0.1.0, Culture=neutral, PublicKeyToken=bad199fe84eb3df4, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\OpenTK.GLControl.3.0.1\lib\net20\OpenTK.GLControl.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Exceptions\FailedToLoadFileException.cs" />
+    <Compile Include="Extensions\Matrix4x4Extensions.cs" />
+    <Compile Include="Extensions\StringExtensions.cs" />
+    <Compile Include="Persistence\ModelLoader.cs" />
+    <Compile Include="Persistence\ModelSaver.cs" />
+    <Compile Include="Persistence\ModelWithMetadata.cs" />
+    <Compile Include="Persistence\PlyHeaderNormalizer.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Extensions\Vector3Extensions.cs" />
+    <Compile Include="Utils\MeshViewControlController.cs" />
+    <Compile Include="Utils\ModelData.cs" />
+    <Compile Include="Utils\Constants.cs" />
+    <Compile Include="ViewModels\ApplicationViewModel.cs" />
+    <Compile Include="Views\LoadingView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\LoadingView.Designer.cs">
+      <DependentUpon>LoadingView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Views\MainView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Views\MainView.Designer.cs">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Views\MainView.resx">
+      <DependentUpon>MainView.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="OpenTK.dll.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Shaders\flatShader.frag">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Include="Shaders\flatShader.vert">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\test\Polynano.Persistence.PolygonFileFormat.Tests\Polynano.Persistence.PolygonFileFormat.Tests.csproj">
+      <Project>{731fe834-8fe1-47e6-9474-24b551bf3521}</Project>
+      <Name>Polynano.Persistence.PolygonFileFormat.Tests</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Polynano.Persistence.PolygonFileFormat\Polynano.Persistence.PolygonFileFormat.csproj">
+      <Project>{87eaf730-5588-4b6b-bf44-bb0e0f3b4795}</Project>
+      <Name>Polynano.Persistence.PolygonFileFormat</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Polynano.Processing.Core\Polynano.Processing.Core.csproj">
+      <Project>{6FF80A3A-BF6D-48A1-B06B-C9B98A2932E2}</Project>
+      <Name>Polynano.Processing.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Polynano.Processing.Simplification\Polynano.Processing.Simplification.csproj">
+      <Project>{46AC548B-D1D8-4E3B-8B6B-A92DDC93CA52}</Project>
+      <Name>Polynano.Processing.Simplification</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Polynano.Rendering\Polynano.Rendering.csproj">
+      <Project>{89a1019f-8f49-42f1-9af9-a4b7034d7bf0}</Project>
+      <Name>Polynano.Rendering</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
