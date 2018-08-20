@@ -1,7 +1,7 @@
 # Polynano
 
-Historical code of a old school project.
-Implemented is a .PLY-Format Writer and Reader (full support of all versions), 3D Viewer, basic mesh simplification and a not yet fully working half-edge structure traversal and manipulation framework.   
+Code of a school project.
+Implemented is a .PLY-Format Writer and Reader (full support of all versions), 3D Viewer, very basic mesh simplification and a not yet fully working half-edge structure traversal and manipulation framework.   
 
 ## Screenshots
 
